@@ -9,7 +9,12 @@ resource "aws_s3_bucket" "terraform_state" {
     prevent_delete = false
   }
 } 
-
+resource "aws_s3_bucket_versioning" "terraform_state" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 resource "aws_dynamodb_table" "s3_dynamodb_tb" {
   name         = "backedn-db"
   billing_mode = "PAY_PER_REQUEST"
