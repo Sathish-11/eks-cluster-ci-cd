@@ -7,7 +7,7 @@ provider "aws" {
 
 # 2. "We need VPC" -> Create a module call
 module "vpc" {
-  source = "./modules/vpc"
+  source = "./modules/VPC"
 
   #what does VPC need? 
   cluster-name = var.cluster_name
@@ -19,7 +19,7 @@ module "vpc" {
   public_subnet_cidrs  = var.public_subnet_cidrs
 }
 
- EKS module
+# EKS module
 module "eks" {
   source = "./modules/eks"
   
