@@ -1,4 +1,14 @@
 # main.tf file (root level)
+# Backend configuration
+terraform {
+  backend "s3" {
+    bucket         = "sat-s3-eks-backend"
+    key            = "terraform.tfstate"
+    region         = "ap-south-1"
+    dynamodb_table = "backend-db"
+    encrypt        = true
+  }
+}
 
 # 1. First , declare what provider can be used
 provider "aws" {
