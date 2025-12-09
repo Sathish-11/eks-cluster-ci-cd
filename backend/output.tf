@@ -4,6 +4,6 @@ output "s3_bucket_name" {
 }
 
 output "dynamodb_table_name" {
-  value       = aws_dynamodb_table.terraform_state.id
+  value       = aws_dynamodb_table.s3_dynamodb_tb.id
   description = "The name of the DynamoDB table"
 }

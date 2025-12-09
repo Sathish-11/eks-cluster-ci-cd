@@ -52,7 +52,7 @@ resource "aws_iam_role" "node" {
 }
 
 resource "aws_iam_role_policy_attachment" "NodePolicy" {
-  for.each = ([
+  for_each = toset([
   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
   "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
@@ -75,12 +75,12 @@ resource "aws_eks_node_group" "main" {
 
   scaling_config {
     desired_size   = each.value.scaling_config.desired_size
-    max_size       = 
-    min_size       = 
+    max_size       = each.value.scaling_config.max_size
+    min_size       = each.value.scaling_config.min_size
   }
 
   update_config  {
-    max_unavailable = 
+    max_unavailable = 1
   }
   
   depends_on = [
