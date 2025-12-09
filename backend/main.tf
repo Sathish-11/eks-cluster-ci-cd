@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "terraform_state" {
   bucket = "sat-s3-eks-backend"
 
   lifecycle {
-    prevent_delete = false
+    prevent_destroy = false
   }
 } 
 resource "aws_s3_bucket_versioning" "terraform_state" {
@@ -16,7 +16,7 @@ resource "aws_s3_bucket_versioning" "terraform_state" {
   }
 }
 resource "aws_dynamodb_table" "s3_dynamodb_tb" {
-  name         = "backedn-db"
+  name         = "backend-db"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
