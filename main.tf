@@ -10,7 +10,7 @@ module "vpc" {
   source = "./modules/VPC"
 
   #what does VPC need? 
-  cluster-name = var.cluster_name
+  cluster_name = var.cluster_name
   vpc_cidr     = var.vpc_cidr
 
   # subnets in different zones (AWS requirement)
